@@ -48,15 +48,15 @@ void configPins()
 {
 	// Enable PORTB where LED is connected
 	RCC_IOPENR |= BIT1;
-	
+	GPIOB_MODER |= BIT6; // make bit3  an output
+	GPIOB_MODER &= ~BIT7; // make bit3  an output
 }	
 
 int main()
 {
 	initClockHSI16();
 	configPins(); 
-	GPIOB_MODER |= BIT6; // make bit3  an output
-	GPIOB_MODER &= ~BIT7; // make bit3  an output
+	
 	while(1)
 	{
 		GPIOB_ODR |= BIT3;
